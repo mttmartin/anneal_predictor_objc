@@ -761,29 +761,24 @@ char *strrev(const char *string)
         // account for initiation (first and last base)
         if ((j == 0) || (j == oligo_n-2))
         {
-            if ((strncmp(seq1, "A", 1) == 0) || (strncmp(seq1, "T", 1)==0))
+            if (((strncmp(seq1, "A", 1) == 0) && (strncmp(seq2, "T", 1) == 0)) ||
+                ((strncmp(seq1, "T", 1) == 0) && (strncmp(seq2, "A", 1) == 0)))
             {
-                if ((strncmp(seq2, "A", 1) == 0) || (strncmp(seq2, "T", 1)==0))
-                {
-                    float deltaH = 9.62;
-                    float deltaS = 17.15/1000;
-                    float deltaGinit = deltaH - (temperature*deltaS);
-                    deltaGtotal = deltaGtotal + deltaGinit;
-                    
-                    
-                }
+                float deltaH = 9.62;
+                float deltaS = 17.15/1000;
+                float deltaGinit = deltaH - (temperature*deltaS);
+                deltaGtotal = deltaGtotal + deltaGinit;
             }
             
-            else if ((strncmp(seq1, "G", 1) == 0) || (strncmp(seq1, "C", 1)==0))
+            else if (((strncmp(seq1, "G", 1) == 0) && (strncmp(seq2, "C", 1) == 0))
+                     || ((strncmp(seq1, "C", 1) == 0) && (strncmp(seq2, "G", 1) == 0)))
             {
-                if ((strncmp(seq2, "G", 1) == 0) || (strncmp(seq2, "C", 1)==0))
-                {
-                    float deltaH = 0.4184;
-                    float deltaS = -11.72/1000;
-                    float deltaGinit = deltaH - (temperature*deltaS);
-                    deltaGtotal = deltaGtotal + deltaGinit;
-                }
+                float deltaH = 0.4184;
+                float deltaS = -11.72/1000;
+                float deltaGinit = deltaH - (temperature*deltaS);
+                deltaGtotal = deltaGtotal + deltaGinit;
             }
+            
         }
         
         
