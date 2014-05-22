@@ -496,6 +496,114 @@ char *strrev(const char *string)
         *deltaH = 32;
     }
     
+    
+    /* More mismatches from: Peyret, N., Seneviratne, P. A., Allawi, H. T., & 
+       Santalucia, J. (1999). Articles Nearest-Neighbor Thermodynamics and NMR 
+       of DNA Sequences with Internal A.A, C.C, G.G, and T.T Mismatches. 
+       Biochemistry, 38(12), 3468–3477. */
+    
+    // Assuming Table 2 is mislabeled and "∆H° (eu)" means "∆S° (eu)"
+    
+    else if ((strncmp(oligo1, "AA", 2) == 0) && (strncmp(oligo2, "TA", 2) == 0))
+    {
+        *deltaS = 7.1;
+        *deltaH = 5.0;
+    }
+    
+    else if ((strncmp(oligo1, "CA", 2) == 0) && (strncmp(oligo2, "GA", 2) == 0))
+    {
+        *deltaS = -18;
+        *deltaH = -4;
+    }
+
+    else if ((strncmp(oligo1, "GA", 2) == 0) && (strncmp(oligo2, "CA", 2) == 0))
+    {
+        *deltaS = -41;
+        *deltaH = -12;
+    }
+    
+    else if ((strncmp(oligo1, "TA", 2) == 0) && (strncmp(oligo2, "AA", 2) == 0))
+    {
+        *deltaS = 54.0;
+        *deltaH = 20;
+    }
+
+    else if ((strncmp(oligo1, "AC", 2) == 0) && (strncmp(oligo2, "TC", 2) == 0))
+    {
+        *deltaS = -18;
+        *deltaH = 0.0001; // Error checks for zero, was pm 2.1
+    }
+
+    else if ((strncmp(oligo1, "CC", 2) == 0) && (strncmp(oligo2, "GC", 2) == 0))
+    {
+        *deltaS = -30;
+        *deltaH = -6.3;
+    }
+
+    else if ((strncmp(oligo1, "GC", 2) == 0) && (strncmp(oligo2, "CC", 2) == 0))
+    {
+        *deltaS = 37;
+        *deltaH = 15;
+    }
+             
+    else if ((strncmp(oligo1, "TC", 2) == 0) && (strncmp(oligo2, "AC", 2) == 0))
+    {
+        *deltaS = 68.6;
+        *deltaH = 26;
+    }
+             
+    else if ((strncmp(oligo1, "AG", 2) == 0) && (strncmp(oligo2, "TG", 2) == 0))
+    {
+        *deltaS = -40;
+        *deltaH = -13;
+    }
+             
+    else if ((strncmp(oligo1, "CG", 2) == 0) && (strncmp(oligo2, "GG", 2) == 0))
+    {
+        *deltaS = -64.0;
+        *deltaH = -21;
+    }
+             
+    else if ((strncmp(oligo1, "GG", 2) == 0) && (strncmp(oligo2, "CG", 2) == 0))
+    {
+        *deltaS = -66.1;
+        *deltaH = -25;
+    }
+             
+    else if ((strncmp(oligo1, "TG", 2) == 0) && (strncmp(oligo2, "AG", 2) == 0))
+    {
+        *deltaS = 15;
+        *deltaH = 6.7;
+    }
+             
+    else if ((strncmp(oligo1, "AT", 2) == 0) && (strncmp(oligo2, "TT", 2) == 0))
+    {
+        *deltaS = -45.2;
+        *deltaH = -11;
+    }
+             
+    else if ((strncmp(oligo1, "CT", 2) == 0) && (strncmp(oligo2, "GT", 2) == 0))
+    {
+        *deltaS = -66.1;
+        *deltaH = -21;
+    }
+
+    else if ((strncmp(oligo1, "GT", 2) == 0) && (strncmp(oligo2, "CT", 2) == 0))
+    {
+        *deltaS = -35;
+        *deltaH = -9.2;
+    }
+             
+    else if ((strncmp(oligo1, "TT", 2) == 0) && (strncmp(oligo2, "AT", 2) == 0))
+    {
+        *deltaS = -6.3;
+        *deltaH = 0.8;
+    }
+
+    
+
+
+        
     if ((*deltaS == 0) || (*deltaH==0))
     {
         //NSLog(@"Error: getThermoData:Duplex pair not found");
